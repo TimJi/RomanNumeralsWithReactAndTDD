@@ -11,29 +11,17 @@ class RomanNumerals extends Component {
     toRomanNumerals1to9=(arabicNumerals, mapping)=>{
         let result = '';
         arabicNumerals = Number(arabicNumerals)
-        if(arabicNumerals<=5){
-            for( let i=0; i < arabicNumerals; i++){
-                result +=mapping[0]
-            }
-            if(arabicNumerals === 4){
-                return mapping[1];
-            }
-            if(arabicNumerals === 5){
-                return mapping[2];
-            }
-            return result;
-        }
-        if(arabicNumerals<=10){
-            if(arabicNumerals === 9){
-                return mapping[3];
-            }
+        if(arabicNumerals === 9) return mapping[3];
+        if(arabicNumerals === 4) return mapping[1];
+        if(arabicNumerals >= 5){
             result = mapping[2]
             arabicNumerals -= 5
-            for( let i=0; i < arabicNumerals; i++){
-                result += mapping[0];
-            }
-            return result;
         }
+        while(arabicNumerals>0){
+            result += mapping[0];
+            arabicNumerals--
+        }
+        return result;
     }
     toRomanNumerals = arabicNumerals => {
         let romanLevelMapping = [];
