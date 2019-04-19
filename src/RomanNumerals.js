@@ -8,8 +8,52 @@ class RomanNumerals extends Component {
             romanNumerals: ''
         }
     }
+    toRomanNumerals1to9=(arabicNumerals, mapping)=>{
+        let result = '';
+        arabicNumerals = Number(arabicNumerals)
+        if(arabicNumerals<=5){
+            for( let i=0; i < arabicNumerals; i++){
+                result +=mapping[0]
+            }
+            if(arabicNumerals === 4){
+                return mapping[1];
+            }
+            if(arabicNumerals === 5){
+                return mapping[2];
+            }
+            return result;
+        }
+        if(arabicNumerals<=10){
+            if(arabicNumerals === 9){
+                return mapping[3];
+            }
+            result = mapping[2]
+            arabicNumerals -= 5
+            for( let i=0; i < arabicNumerals; i++){
+                result += mapping[0];
+            }
+            return result;
+        }
+    }
     toRomanNumerals = arabicNumerals => {
-        return '^_^'
+        let mappingThousand = ['M']
+        let mappingHundred = ['C', 'CD', 'D', 'CM']
+        let mappingTen = ['X', 'XL', 'L', 'XC']
+        let mapping = ['I', 'IV', 'V', 'IX']
+
+        let arabicArray=arabicNumerals.toString().split('')
+        
+        if(arabicArray.length ===4){
+            return this.toRomanNumerals1to9(arabicArray[0], mappingThousand) + this.toRomanNumerals1to9(arabicArray[1], mappingHundred) + this.toRomanNumerals1to9(arabicArray[2], mappingTen) + this.toRomanNumerals1to9(arabicArray[3], mapping)
+        }
+        if(arabicArray.length ===3){
+            return this.toRomanNumerals1to9(arabicArray[0], mappingHundred) + this.toRomanNumerals1to9(arabicArray[1], mappingTen) + this.toRomanNumerals1to9(arabicArray[2], mapping)
+        }
+        if(arabicArray.length ===2){
+            return this.toRomanNumerals1to9(arabicArray[0], mappingTen) + this.toRomanNumerals1to9(arabicArray[1], mapping)
+        }
+        return this.toRomanNumerals1to9(arabicNumerals, mapping)
+        
     }
     onClickToRomanNumerals = () => {
         const { arabicNumerals } = this.state
