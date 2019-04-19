@@ -36,24 +36,19 @@ class RomanNumerals extends Component {
         }
     }
     toRomanNumerals = arabicNumerals => {
-        let mappingThousand = ['M']
-        let mappingHundred = ['C', 'CD', 'D', 'CM']
-        let mappingTen = ['X', 'XL', 'L', 'XC']
-        let mapping = ['I', 'IV', 'V', 'IX']
+        let romanLevelMapping = [];
+        romanLevelMapping[1] = ['I', 'IV', 'V', 'IX']
+        romanLevelMapping[2] = ['X', 'XL', 'L', 'XC']
+        romanLevelMapping[3] = ['C', 'CD', 'D', 'CM']
+        romanLevelMapping[4] = ['M']
 
         let arabicArray=arabicNumerals.toString().split('')
-        
-        if(arabicArray.length ===4){
-            return this.toRomanNumerals1to9(arabicArray[0], mappingThousand) + this.toRomanNumerals1to9(arabicArray[1], mappingHundred) + this.toRomanNumerals1to9(arabicArray[2], mappingTen) + this.toRomanNumerals1to9(arabicArray[3], mapping)
+        let result = ''
+        while(arabicArray.length >= 1){
+            let mapping = romanLevelMapping[arabicArray.length]
+            result += this.toRomanNumerals1to9(arabicArray.shift(), mapping);
         }
-        if(arabicArray.length ===3){
-            return this.toRomanNumerals1to9(arabicArray[0], mappingHundred) + this.toRomanNumerals1to9(arabicArray[1], mappingTen) + this.toRomanNumerals1to9(arabicArray[2], mapping)
-        }
-        if(arabicArray.length ===2){
-            return this.toRomanNumerals1to9(arabicArray[0], mappingTen) + this.toRomanNumerals1to9(arabicArray[1], mapping)
-        }
-        return this.toRomanNumerals1to9(arabicNumerals, mapping)
-        
+        return result
     }
     onClickToRomanNumerals = () => {
         const { arabicNumerals } = this.state
