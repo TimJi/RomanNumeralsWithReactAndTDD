@@ -7,46 +7,34 @@ configure({ adapter: new Adapter() });
 
 describe('Roman Numerals Testing', () => {
     const wrapper = shallow(<RomanNumerals />)
-    it('Given I input Arabic numerals 1, when I call function toRomanNumerals, then I should got "I"', () => {
-        expect(wrapper.instance().toRomanNumerals( 1 )).toBe('I')
-    })
-    it('Given I input Arabic numerals 2, when I call function toRomanNumerals, then I should got "II"', () => {
-        expect(wrapper.instance().toRomanNumerals( 2 )).toBe('II')
-    })
-    it('Given I input Arabic numerals 3, when I call function toRomanNumerals, then I should got "III"', () => {
-        expect(wrapper.instance().toRomanNumerals( 3 )).toBe('III')
-    })
-    it('Given I input Arabic numerals 4, when I call function toRomanNumerals, then I should got "III"', () => {
-        expect(wrapper.instance().toRomanNumerals( 4 )).toBe('IV')
-    })
-    it('Given I input Arabic numerals 5, when I call function toRomanNumerals, then I should got "III"', () => {
-        expect(wrapper.instance().toRomanNumerals( 5 )).toBe('V')
-    })
-    it('Given I input Arabic numerals 6, when I call function toRomanNumerals, then I should got "III"', () => {
-        expect(wrapper.instance().toRomanNumerals( 6 )).toBe('VI')
-    })
-    it('Given I input Arabic numerals 7, when I call function toRomanNumerals, then I should got "III"', () => {
-        expect(wrapper.instance().toRomanNumerals( 7 )).toBe('VII')
-    })
-    it('Given I input Arabic numerals 8, when I call function toRomanNumerals, then I should got "III"', () => {
-        expect(wrapper.instance().toRomanNumerals( 8 )).toBe('VIII')
-    })
-    it('Given I input Arabic numerals 9, when I call function toRomanNumerals, then I should got "III"', () => {
-        expect(wrapper.instance().toRomanNumerals( 9 )).toBe('IX')
-    })
-    it('Given I input Arabic numerals 9, when I call function toRomanNumerals, then I should got "III"', () => {
-        expect(wrapper.instance().toRomanNumerals( 12 )).toBe('XII')
-    })
-    it('Given I input Arabic numerals 9, when I call function toRomanNumerals, then I should got "III"', () => {
-        expect(wrapper.instance().toRomanNumerals( 12 )).toBe('XII')
-    })
-    it('Given I input Arabic numerals 19, when I call function toRomanNumerals, then I should got "III"', () => {
-        expect(wrapper.instance().toRomanNumerals( 19 )).toBe('XIX')
-    })
-    it('Given I input Arabic numerals 19, when I call function toRomanNumerals, then I should got "III"', () => {
-        expect(wrapper.instance().toRomanNumerals( 34 )).toBe('XXXIV')
-    })
-    it('Given I input Arabic numerals 99, when I call function toRomanNumerals, then I should got "III"', () => {
-        expect(wrapper.instance().toRomanNumerals( 99 )).toBe('XCIX')
-    })
+    const testCaseMapping = []
+    testCaseMapping[1] = 'I'
+    testCaseMapping[2] = 'II'
+    testCaseMapping[3] = 'III'
+    testCaseMapping[4] = 'IV'
+    testCaseMapping[5] = 'V'
+    testCaseMapping[6] = 'VI'
+    testCaseMapping[7] = 'VII'
+    testCaseMapping[8] = 'VIII'
+    testCaseMapping[9] = 'IX'
+    testCaseMapping[10] = 'X'
+    testCaseMapping[19] = 'XIX'
+    testCaseMapping[24] = 'XXIV'
+    testCaseMapping[34] = 'XXXIV'
+    testCaseMapping[99] = 'XCIX'
+    testCaseMapping[369] = 'CCCLXIX'
+    testCaseMapping[448] = 'CDXLVIII'
+    testCaseMapping[999] = 'CMXCIX'
+    testCaseMapping[1998] = 'MCMXCVIII'
+    testCaseMapping[2751] = 'MMDCCLI'
+    testCaseMapping[3333] = 'MMMCCCXXXIII'
+    testCaseMapping[3444] = 'MMMCDXLIV'
+    testCaseMapping[3999] = 'MMMCMXCIX'
+    
+
+    testCaseMapping.forEach(( exceptRomanNumerals, arabicNumerals ) => {
+        it(`Given I input Arabic numerals ${arabicNumerals}, when I call function toRomanNumerals, then I should got "${exceptRomanNumerals}"`, () => {
+            expect(wrapper.instance().toRomanNumerals( arabicNumerals )).toBe(exceptRomanNumerals)
+        })
+    });
 })
